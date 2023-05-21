@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran WebSite</title>
+    <style>
+        body{
+            font-family: Roboto  , Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            user-select: none;
+            overflow-x: hidden;
+        }
+        *{
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: 0.4s;
+            /* border-right:  1px solid red; */
+        }
+        /*media queries*/
+        @media (max-width:900px){
+            #main > *{
+                padding : 0px 25px !important;
+            }
+        }
+        @media(min-width:700px){
+            .menu{
+                display:flex !important;
+                align-items: center;    
+                flex-direction: row !important;
+                padding: 0 !important; 
+                position: static !important;
+            background-color: #E9E6D7 !important;      
+            }
+            .header > div {
+            border-bottom: 1px solid #26544C;
+            }
+        }
+        @media(min-width:900px){
+            .menu{
+                width: 65% !important;;
+            }
+        }
+        @media(max-width: 900px) and (min-width : 700px) {
+            #logo{
+                width:25% !important;
+            }
+            .menu{
+                width:75% !important;
+            }
+        }
+        @media(max-width:800px){
+            .auth  > li:first-child{
+                display: none !important;
+            }
+            .AboutContent{
+                    max-width: 100% !important;
+            }
+        }
+        @media(max-width : 699px){
+            footer > div:first-child > div{
+                min-width: 100% !important;
+            }
+            .Herocontent{
+                height: 60vh !important;
+            } 
+            .statData{
+                flex-direction: column ;
+            }
+            .statdataItem:first-child{
+               margin-top:50px;
+            }
+            .statdataItem:last-child{
+                margin-bottom:50px;
+            }
+            .statdataItem{
+                min-height: 150px;
+                border-right: 0 !important;
+            }
+            .heroPics > img:last-child{
+                display: none !important;
+            }
+            .heroPics > img:first-child{
+                max-width : 100% !important;
+            }
+            .ham{
+                display:flex !important;
+                align-items: center;
+                padding: 10px 0;
+                cursor: pointer;
+            }
+            .navigations{
+                flex-direction: column;
+            }
+            .navigations > li:hover, .auth > li:hover{
+                background-color: #cac8ba;
+            }
+            .navigations > li , .auth > li {
+                width : 100% !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .auth button{
+                width : 100%;
+            }
+        }
+        /*media queries end */
+        /*header */
+        .menu{
+            width:100%;
+            position : absolute;
+            left : 0;
+            top: 9%;
+            justify-content: space-between;
+            padding: 10px 25px;
+            gap:20px;
+            flex-direction: column;
+            background-color: #dbd9c6;
+            border-radius: 10px;
+        }
+        #main{
+            min-height: 100vh;
+            background-color: #E9E6D7;
+        }
+        #main > *{
+            padding : 0px 70px;
+
+        }
+        
+        .header{
+            width : 100vw;
+            height: 10vh;
+        }
+        .header  > div {
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+            width:100%;     
+        }
+        .header ul {
+            list-style-type: none;
+            display :flex;
+        }
+        .navigations > li:hover{
+            
+            cursor: pointer;
+            opacity: 1;
+        }
+        .navigations > li{
+            padding : 10px 10px;
+            border-radius: 5px;
+            opacity: 0.7;
+        }
+        .navigations{
+            gap:20px;
+        }
+        .auth{
+            align-items: center;
+            gap:35px;
+        }
+        .auth li:first-child{
+            cursor: pointer;
+            border-radius: 5px;
+            padding : 10px 10px;
+        }
+        #logo{
+            width: 35%;
+            display: flex;
+            align-items: center;
+            gap : 5px;
+        }
+        #logo > img{
+            width:70px;
+        }
+        .flex{
+            display :flex;
+        }
+        .flexcenter{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .BTN{
+            border-radius: 0.4rem;
+            border : none;
+            font-weight: 560;
+            cursor: pointer;
+        }
+        .primaryBtn{
+            width: 120px;
+            height:50px;
+            background-color: #26544C;
+            color:white;
+        }
+        .ham{
+            display: none;
+        }
+        /*header ends*/
+        /*hero start*/
+        .hero{
+            display : flex;
+            flex-direction: column;
+            background-image: url(./imgs/hero_back.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-attachment: fixed;
+            align-items: center;
+        }
+        .Herocontent > h1{
+            color : #26544C;
+            font-size: 4rem;
+        }
+        .Herocontent  > p{
+            opacity: 0.7;
+            font-weight: 400;
+        }
+        .Herocontent{
+            padding: 40px 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            max-width: 700px;
+            align-items: center;
+            height: 50vh;
+            justify-content: space-around;
+        }
+        .Herocontent > div { 
+            display: flex;
+            gap : 25px;
+            justify-content: center;
+            font-size: medium;
+        }
+        .heroBTN:hover{
+            background-color: #eca80a;
+            box-shadow: 0 0 10px 0 #F2AC0E;
+        }
+        .heroBTN{
+            background-color: #F2AC0E;
+            color: #26544C;
+            font-size: inherit;
+            width: 160px;
+            height:50px;
+        }
+        .semiheroBTN:hover{
+            background-color: #26544C;
+            color: #E9E6D7;
+        }
+        .semiheroBTN{
+            width: 160px;
+            font-size: inherit;
+            height:50px;
+            background-color: #00000000;
+            border: 1px solid #26544C;
+            color: #26544C;
+        }
+        .heroPics{
+            display: flex;
+            justify-content: center;
+            gap : 40px;
+        }
+        .heroPics > img{
+            max-width : 40%;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+        .heroPics > img:first-child{
+            max-width : 60%;
+            height: fit-content;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+        /*hero ends*/
+        .statData{
+            background-color: #26544C;
+            min-height:300px;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .statdataItem > span{
+            opacity: 0.7;
+            font-size: large;
+        }
+        .statdataItem > h3{
+            font-size: 3rem;
+            color: #eca80a;
+        }
+        .statdataItem{
+            display: flex;
+            color:white;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        
+            gap:10px;
+            width: 100%;
+            border-right : 1px solid gray;
+        }   
+        .about{
+                    min-height: 80vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .about > div{
+                    margin: 50px  0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    gap : 40px;
+                    flex-wrap: wrap;
+                }
+                .Aboutpics{
+                    display: flex;
+                    gap:30px;
+                }
+                .Aboutpics img{
+                    max-width: 250px;
+                    border-radius: 25px;
+                }
+                .Aboutpics img:first-child{
+                    margin-bottom: 40px;
+                }
+                .Aboutpics img:last-child{
+                    margin-top: 40px;
+                }
+                .AboutContent > p{
+                    font-size: large;
+                    opacity: 0.6;
+                }
+                .AboutContent > h2{
+                    font-size: 3rem;
+                    color :#26544C;
+                }
+                .AboutContent{
+                    margin-top: 40px;
+                    display: flex;
+                    max-width: 45%;
+                    flex-direction: column;
+                    gap : 20px;
+                }
+                .surrahs{
+                    min-height : 90vh;
+                }
+                .surrahs h2{
+                    font-size: 3rem;
+                    text-align: center;
+                    max-width: 500px;
+                    color: #26544C;
+                }
+                .surrahs > div{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap : 20px;
+
+                }
+                .surrah-controls{
+                    width: 100%;
+                    display: flex;
+                    margin-bottom: 20px;
+                    justify-content: space-between;
+                }
+                .surrah-material{
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 30px 30px;
+                    justify-content: center;
+                }
+                .surrah > p{
+                    padding :10px;
+                    opacity: 0.6;
+                    transition: 0.1ms;
+                }
+                .surrah > h4{
+                    flex:1;
+                    transition: 0.1ms;
+                    font-size: large;
+                }
+                .surrah:hover > div{
+                    background-color: white;
+                }
+                .surrah:hover{
+                    background-color: #26544C;
+                    box-shadow: 0 10px 20px -20px #26544C;
+                    color:white;
+                }
+                .surrah{
+                    cursor: pointer;
+                    width : 300px;
+                    height: 80px;
+                    box-shadow: 0 10px 20px -20px #00000070;
+                    display: flex;
+                    align-items: center;
+                    border-radius: 15px;
+                    justify-content: space-between;
+                    background-color: white;
+                }
+                .surrah > div{
+                    width :50px;
+                    margin : 10px;
+                    background-color: #dbd9c6;
+                    border-radius: 15px;
+                    height : 50px;
+                    color : #605E54;
+                }
+                .blogs >div > p{
+                    max-width : 30rem;
+                    opacity: 0.6;
+                    text-align: center;
+
+                }
+                .blogs h2{
+                    font-size: 3rem;
+                    text-align: center;
+                    color: hsl(170, 28%, 24%);
+                }
+                .blogs{
+                    background-color: white;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    min-height: 100vh;
+                }
+                .blogs > div{
+                    gap : 20px;
+                    padding : 150px 0;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                }
+                .blog-portion{
+                    display: flex;
+                    justify-content: center;
+                    gap: 30px 30px;
+                    flex-wrap: wrap;
+                    margin-top: 30px ;
+                }
+                .blog{
+                            border-radius: 15px;
+                            max-width : 500px;
+                            max-height:250px;
+                            display: flex;
+                            gap : 10px;
+                            border : 1px solid #605E5450;
+                        }
+                        .blog:hover{
+                            box-shadow: 0 10px 20px -20px #00000070;
+                            border :0;
+                            cursor: pointer;
+                            background-color: #E9E6D7;           
+                        }
+                        .blogimg{
+                            width:50%;
+                            height:100%;
+                            padding:10px;
+                        }
+                        .blogimg > img{
+                            border-radius: 15px;
+                            width:100%;
+                            height:100%;
+                        }
+                        
+                        .blog-details > p{opacity: 0.6;}
+                        .blog-details > a{color:#26544C;font-weight: bold;}
+                        .blog-details > h3{
+                            font-size: 1.2rem;
+                        }
+                        .blog-details{
+                            display: flex;
+                            flex-direction: column;
+                            /* gap:25px; */
+                            justify-content: space-around;
+                            padding: 20px 0 ;
+                            width:50%;
+                        }
+                        footer{
+                    display: flex;
+                    flex-direction: column;
+                }
+                footer  div{
+                    display: flex;
+                }
+                footer > div:first-child{
+                    padding:40px 0;
+                    flex-wrap: wrap;
+                    gap:60px;
+                    justify-content: space-around;
+                }
+                footer > div:first-child > div{
+                    flex-direction: column;
+                }
+                footer > div:last-child{
+                    padding :20px;
+                    justify-content: center;
+                    align-items: center;
+                }
+                footer li {
+                    list-style: none;
+                    opacity: 0.5;
+                }
+                footer ul{
+                    display: flex;
+                    gap:10px;
+                    flex-direction: column;
+                }
+                footer ul > li:first-child{
+                    font-weight: 700;
+                    opacity: 1;
+                    font-size: large;
+                    margin-bottom: 15px;
+                }
+                .social{
+                    display: flex;
+                    gap:20px;
+                    margin-top: 20px;
+                }
+                .social > li:hover{
+                    background-color: #F2AC0E;
+                }
+                .social > li{
+                    width:42px;
+                    height:42px;
+                    opacity: 1;
+                    color:#26544C;
+                    background-color: hsl(83, 13%, 76%);
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding:5px;
+                    cursor: pointer;
+                }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <section id="main" >
+            <header class="header"><div>
+                <span id="logo">
+                    <img src="./imgs/logo.png" alt="">
+                    <h2>Quran</h2>
+                </span>
+                <ul class="menu" style="display: none">
+                    <ul class="navigations">
+                        <li>Home</li>
+                        <li>About</li>
+                        <li>Translation</li>
+                        <li>Donate</li>
+                    </ul>
+                    <ul class="auth">
+                        <li>Login</li>
+                        <li><button class="primaryBtn BTN">Sign Up</button></li>
+                    </ul>
+                </ul>
+                <div class="ham">HAM</div>
+            </div></header>
+            <section class="hero">
+                <div class="Herocontent">
+                    <h1>Make self-purification by reading Quran</h1>
+                    <p>Make self-purification by reading Quran. This website is all about holy quran. You can read, you can listen and you can learn so many things about Islam.</p>
+                    <div>
+                        <button class="heroBTN BTN">Read Quran</button>
+                        <button class="semiheroBTN BTN">Quran Audio</button>
+                    </div>
+                </div>
+                <div class="heroPics">
+                    <img src="./imgs/quran1.png" alt="">
+                    <img src="./imgs/quran2.png" alt="">
+                </div>
+            </section>
+            <section class="statData">
+                    <div class="statdataItem">
+                        <h3>30</h3>
+                        <span>Quran's Chapters</span>
+                    </div>
+                    <div class="statdataItem">
+                        <h3>114</h3>
+                        <span>Quran's Surrahs</span>
+                    </div>
+                    <div class="statdataItem">
+                        <h3>6,666</h3>
+                        <span>QQuran's Verses</span>
+                    </div>
+                    <div class="statdataItem">
+                        <h3>86</h3>
+                        <span>Makki Surrahs</span>
+                    </div>
+                    <div class="statdataItem" style="border-right : 0">
+                        <h3>28</h3>
+                        <span>Madani Surrahs</span>
+                    </div>
+            </section>
+            <section class = "about">
+            <div>
+                <div class="Aboutpics">
+                    <img src="./imgs/quran3.png" alt="">
+                    <img src="./imgs/quran4.png" alt="">
+                </div>
+                <div class="AboutContent">
+                    <h2>About Holy Quran</h2>
+                    <p>The Quran, also romanized Qur'an or Koran, is the central religious text of Islam, believed by Muslims to be a revelation from Allah. It is organized in 30 chapters, 114 surahs which consist of 6666 verses.</p>
+                    <p>In addition to its religious significance, it is widely regarded as the finest work in Arabic literature.</p>
+                    <button class="BTN heroBTN" style="margin: 30px 0;">Learn More</button>
+                </div>
+            </div>
+            </section>
+            <section class="surrahs">
+                <div>
+                <h2>Read holy quran with translations</h2>
+        <div class="surrah-controls">
+            <div>
+                <!-- Yet to Develop -->
+            </div>
+            <div><span style="opacity: 0.6;">Sort By: </span><span style="cursor: pointer;font-weight: 600;">Accending</span><span style="padding: 4px;">UP</span></div>
+        </div>
+            <div class="surrah-material"></div>
+            <button class="BTN heroBTN" style="margin: 30px 0;">Show More</button>
+            </div>
+            </section>
+            <section class="blogs">
+                <div>
+                    <h2>Latest Islamic Blog</h2>
+                    <p>Read top free Islamic articles & blog posts on the Internet and know about islam.</p>
+                    <div class="blog-portion">
+                        <div class="blog">
+                            <div class="blogimg">
+                                <img src="./imgs/quran5.png" alt="">
+                            </div>
+                            <div class="blog-details">
+                                <h3>How many times bismillah repeated in Quran?</h3>
+                                <p>How many times bismillah repeated in Quran? “In the name of God the most merciful...</p>
+                                <a>Read Now</a>
+                            </div>
+                        </div>
+                        <div class="blog">
+                            <div class="blogimg">
+                                <img src="./imgs/quran5.png" alt="">
+                            </div>
+                            <div class="blog-details">
+                                <h3>How many times bismillah repeated in Quran?</h3>
+                                <p>How many times bismillah repeated in Quran? “In the name of God the most merciful...</p>
+                                <a>Read Now</a>
+                            </div>
+                        </div>
+                        <div class="blog">
+                            <div class="blogimg">
+                                <img src="./imgs/quran5.png" alt="">
+                            </div>
+                            <div class="blog-details">
+                                <h3>How many times bismillah repeated in Quran?</h3>
+                                <p>How many times bismillah repeated in Quran? “In the name of God the most merciful...</p>
+                                <a>Read Now</a>
+                            </div>
+                        </div>
+                        <div class="blog">
+                            <div class="blogimg">
+                                <img src="./imgs/quran5.png" alt="">
+                            </div>
+                            <div class="blog-details">
+                                <h3>How many times bismillah repeated in Quran?</h3>
+                                <p>How many times bismillah repeated in Quran? “In the name of God the most merciful...</p>
+                                <a>Read Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="BTN heroBTN" style="margin: 30px 0;">Read All</button>
+                </div>
+            </section>
+            <section class="appAds">
+                
+            </section>
+            <footer>
+                <div>
+                    <div>
+                        <span id="logo">
+                            <img src="./imgs/logo.png" alt="">
+                            <h2>Quran</h2>
+                        </span>
+                        <span style="opacity:0.5">© 2022 UIHUT All Rights Reserved</span>
+                        <ol class="social">
+                            <li>F</li>
+                            <li>W</li>
+                            <li>G</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Navigate</li>
+                            <li>Home</li>
+                            <li>Reciters</li>
+                            <li>About Us</li>
+                            <li>Donate</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Networks</li>    
+                            <li>QuranicAudio.com</li>
+                            <li>Salah.com</li>
+                            <li>Sunnah.com</li>
+                            <li>Legacy.Quran.com</li>
+                            <li>Previous.Quran.com</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Popular Links</li>
+                            <li>Ayatul Kursi</li>
+                            <li>Yaseen</li>
+                            <li>Al Mulk</li>
+                            <li>Al Rehman</li>
+                            <li>Al Kahf</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Resources</li>
+                            <li>Mobile Apps</li>
+                            <li>Developers</li>
+                            <li>Product Update</li>
+                            <li>Feedback</li>
+                            <li>Help</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="opacity:0.7;border-top: 1px solid #26544C;"><span>English Up</span></div>
+            </footer>
+        </section>
+
+    </div>
+    <script>
+        //global
+const ham = document.querySelector(".ham");
+var menu = document.querySelector(".menu");
+const surrahs = document.querySelector(".surrah-material");
+const surrah_data = [
+    {
+        id : 1, 
+        name :  'Al-Fatihah', 
+        verses : 7,
+    },
+    {
+        id : 2, 
+        name :  'Al-Baqarah', 
+        verses : 286,
+    },
+    {
+        id : 3, 
+        name :  'Al-Imran', 
+        verses : 200,
+    },
+    {
+        id : 4, 
+        name :  'An-Nisa', 
+        verses : 176,
+    },
+    {
+        id : 5, 
+        name :  'Al-Maidah', 
+        verses : 120,
+    },
+    {
+        id : 6, 
+        name :  'Al-Anam', 
+        verses : 165,
+    },
+    {
+        id : 7, 
+        name :  'Al-Araf', 
+        verses : 206,
+    },
+    {
+        id : 8, 
+        name :  'Al-Anfal', 
+        verses : 75,
+    },
+    {
+        id : 9, 
+        name :  'At-Taubah', 
+        verses : 129,
+    },
+    {
+        id : 10, 
+        name :  'Yunus', 
+        verses : 109,
+    },
+    {
+        id : 11, 
+        name :  'Hud', 
+        verses : 123,
+    },
+    {
+        id : 12, 
+        name :  'Yusuf', 
+        verses :111,
+    },
+];
+//end global
+function setSurrah({id , name,verses})
+{
+    if(id  < 10) id = '0'+JSON.stringify(id);
+    surrahs.innerHTML+=`<div class="surrah">
+    <div class ="flexcenter">${id}</div>
+    <h4>${name}</h4>
+    <p>${verses} verses</p>
+</div>`;
+}
+function openHAM(){
+    if(menu.style.display == "none")
+        menu.style.display = "flex";
+    else
+        menu.style.display = "none";
+}
+(function main(){
+    console.log("asdf")
+    ham.addEventListener('click' , openHAM);
+    surrah_data.map(e=>{
+        setSurrah({...e});
+    })
+})()
+    </script>
+</body>
+</html>
